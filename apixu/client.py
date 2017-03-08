@@ -45,3 +45,13 @@ class ApixuClient:
             args['days'] = days
 
         return self._get(url, args)
+
+    def getHistorical(self, q=None, dt=None):
+        url = '%s/v1/history.json' % self.host_url
+        args = {}
+        if q:
+            args['q'] = q
+        if dt:
+            args['dt'] = dt
+
+        return self._get(url, args)
