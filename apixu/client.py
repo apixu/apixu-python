@@ -46,7 +46,7 @@ class ApixuClient:
 
         return self._get(url, args)
 
-    def getHistorical(self, q=None, dt=None):
+    def getHistoricalForecastWeather(self, q=None, dt=None):
         url = '%s/v1/history.json' % self.host_url
         args = {}
         if q:
