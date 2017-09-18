@@ -57,3 +57,12 @@ class ApixuClient:
             args['dt'] = dt
 
         return self._get(url, args)
+
+    def search(self, q=None):
+        url = '%s/v1/search.json' % self.host_url
+        args = {}
+
+        if q:
+            args['q'] = q
+
+        return self._get(url, args)
