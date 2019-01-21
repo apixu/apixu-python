@@ -1,4 +1,5 @@
-import requests, datetime
+import datetime
+import requests
 
 API_URL = 'http://api.apixu.com'
 API_VERSION = '1'
