@@ -1,4 +1,4 @@
-import requests
+import requests, datetime
 
 API_URL='http://api.apixu.com'
 API_VERSION='1'
@@ -59,5 +59,17 @@ class ApixuClient:
             args['q'] = q
         if days:
             args['days'] = days
+
+        return self._get(url, args)
+
+    def getHistoryWeather(self, q=None, since=None):
+        url = self._url('history')
+        args = {}
+        if q:
+            args['q'] = q
+        if since:
+            if not isinstance(since, datetime.date):
+                raise ApixuException(message='"since" must be a date', code=0)
+            args['dt'] = since.strftime('%Y-%m-%d')
 
         return self._get(url, args)
