@@ -1,10 +1,10 @@
 import requests, datetime
 
-API_URL='http://api.apixu.com'
-API_VERSION='1'
-FORMAT='json'
-HTTP_TIMEOUT=20
-DOC_WEATHER_CONDITIONS_URL='https://www.apixu.com/doc/Apixu_weather_conditions.%s';
+API_URL = 'http://api.apixu.com'
+API_VERSION = '1'
+FORMAT = 'json'
+HTTP_TIMEOUT = 20
+DOC_WEATHER_CONDITIONS_URL = 'https://www.apixu.com/doc/Apixu_weather_conditions.%s';
 
 
 class ApixuException(Exception):
@@ -37,12 +37,12 @@ class ApixuClient:
     def _url(self, method):
         return '%s/v%s/%s.%s' % (self.api_url, API_VERSION, method, FORMAT)
 
-    def getConditions(self):
+    def conditions(self):
         url = DOC_WEATHER_CONDITIONS_URL % FORMAT
 
         return self._get(url)
 
-    def getCurrentWeather(self, q=None):
+    def current(self, q=None):
         url = self._url('current')
         args = {}
         if q:
@@ -58,7 +58,7 @@ class ApixuClient:
 
         return self._get(url, args)
 
-    def getForecastWeather(self, q=None, days=None):
+    def forecast(self, q=None, days=None):
         url = self._url('forecast')
         args = {}
         if q:
@@ -68,7 +68,7 @@ class ApixuClient:
 
         return self._get(url, args)
 
-    def getHistoryWeather(self, q=None, since=None):
+    def history(self, q=None, since=None):
         url = self._url('history')
         args = {}
         if q:
