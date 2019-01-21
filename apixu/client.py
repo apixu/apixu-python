@@ -5,7 +5,7 @@ API_URL = 'http://api.apixu.com'
 API_VERSION = '1'
 FORMAT = 'json'
 HTTP_TIMEOUT = 20
-DOC_WEATHER_CONDITIONS_URL = 'https://www.apixu.com/doc/Apixu_weather_conditions.%s';
+DOC_WEATHER_CONDITIONS_URL = 'https://www.apixu.com/doc/Apixu_weather_conditions.%s'
 
 
 class ApixuException(Exception):
