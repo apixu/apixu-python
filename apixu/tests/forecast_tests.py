@@ -4,14 +4,14 @@ from apixu.client import ApixuClient, ApixuException
 
 class ForecastTestCase(unittest.TestCase):
 
-    def test_getForecastWeather_invalid_api_key(self):
+    def test_forecast_invalid_api_key(self):
         client = ApixuClient('INVALID_KEY')
         with self.assertRaises(ApixuException) as cm:
             client.forecast()
 
         self.assertEqual(cm.exception.code, 2006)
 
-    def test_getForecastWeather_no_api_key(self):
+    def test_forecast_no_api_key(self):
         client = ApixuClient()
         with self.assertRaises(ApixuException) as cm:
             client.forecast()
