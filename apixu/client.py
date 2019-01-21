@@ -44,6 +44,14 @@ class ApixuClient:
 
         return self._get(url, args)
 
+    def search(self, q=None):
+        url = self._url('search')
+        args = {}
+        if q:
+            args['q'] = q
+
+        return self._get(url, args)
+
     def getForecastWeather(self, q=None, days=None):
         url = self._url('forecast')
         args = {}
