@@ -3,6 +3,7 @@ import requests
 API_URL='http://api.apixu.com'
 API_VERSION='1'
 FORMAT='json'
+HTTP_TIMEOUT=20
 
 
 class ApixuException(Exception):
@@ -23,7 +24,7 @@ class ApixuClient:
         if self.api_key:
             new_args['key'] = self.api_key
         new_args.update(args or {})
-        response = requests.get(url, params=new_args)
+        response = requests.get(url, params=new_args, timeout=HTTP_TIMEOUT)
         res = response.json()
         if 'error' in res:
             err_msg = res['error'].get('message')
