@@ -1,4 +1,11 @@
+import datetime
 import requests
+
+API_URL = 'http://api.apixu.com'
+API_VERSION = '1'
+FORMAT = 'json'
+HTTP_TIMEOUT = 20
+DOC_WEATHER_CONDITIONS_URL = 'https://www.apixu.com/doc/Apixu_weather_conditions.%s'
 
 
 class ApixuException(Exception):
@@ -10,38 +17,66 @@ class ApixuException(Exception):
 
 
 class ApixuClient:
-    def __init__(self, api_key=None, host_url='http://api.apixu.com'):
+    def __init__(self, api_key=None, api_url=API_URL):
         self.api_key = api_key
-        self.host_url = host_url.rstrip('/')
+        self.api_url = api_url.rstrip('/')
 
     def _get(self, url, args=None):
         new_args = {}
         if self.api_key:
             new_args['key'] = self.api_key
         new_args.update(args or {})
-        response = requests.get(url, params=new_args)
-        json_res = response.json()
-        if 'error' in json_res:
-            err_msg = json_res['error'].get('message')
-            err_code = json_res['error'].get('code')
+        response = requests.get(url, params=new_args, timeout=HTTP_TIMEOUT)
+        res = response.json()
+        if 'error' in res:
+            err_msg = res['error'].get('message')
+            err_code = res['error'].get('code')
             raise ApixuException(message=err_msg, code=err_code)
 
-        return json_res
+        return res
 
-    def getCurrentWeather(self, q=None):
-        url = '%s/v1/current.json' % self.host_url
+    def _url(self, method):
+        return '%s/v%s/%s.%s' % (self.api_url, API_VERSION, method, FORMAT)
+
+    def conditions(self):
+        url = DOC_WEATHER_CONDITIONS_URL % FORMAT
+
+        return self._get(url)
+
+    def current(self, q=None):
+        url = self._url('current')
         args = {}
         if q:
             args['q'] = q
 
         return self._get(url, args)
 
-    def getForecastWeather(self, q=None, days=None):
-        url = '%s/v1/forecast.json' % self.host_url
+    def search(self, q=None):
+        url = self._url('search')
+        args = {}
+        if q:
+            args['q'] = q
+
+        return self._get(url, args)
+
+    def forecast(self, q=None, days=None):
+        url = self._url('forecast')
         args = {}
         if q:
             args['q'] = q
         if days:
             args['days'] = days
+
+        return self._get(url, args)
+
+    def history(self, q=None, since=None):
+        url = self._url('history')
+        args = {}
+        if q:
+            args['q'] = q
+        if since:
+            if not isinstance(since, datetime.date):
+                raise ApixuException(message='"since" must be a date', code=0)
+            args['dt'] = since.strftime('%Y-%m-%d')
 
         return self._get(url, args)
