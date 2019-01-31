@@ -2,7 +2,7 @@ import os
 
 from apixu.client import ApixuClient
 
-api_key = os.environ["APIXUKEY"]
+api_key = os.environ['APIXUKEY']
 client = ApixuClient(api_key)
 
 conditions = client.conditions()
