@@ -1,17 +1,20 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
+
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
 
 setup(
-    name='apixu-client',
+    name='apixu',
     version=__version__,
-    author='pprolancer@gmail.com',
-    description='A client for call Apixu api',
+    description='Python library for Apixu Weather API',
+    author='Andrei Avram',
+    author_email='avramandrei@ymail.com',
+    url='https://www.apixu.com/',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
-        'requests',
-    ],
+    install_requires=required,
     classifiers=['Development Status :: 1 - Production/Beta',
                  'Environment :: Web Environment',
                  'Intended Audience :: Developers',
