@@ -89,8 +89,8 @@ Enter environment:
 make env PYVERSION=3 APIXUKEY=yourapikey
 python setup.py develop
 pip install -r requirements-dev.txt
+pytest apixu/tests/*.py
 pylint apixu
-python -m unittest discover -s apixu/tests -p "*_tests.py"
 ```
 
 Run example file:
