@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "minItems": 1,
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "string"
+        },
+        "night": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "code",
+        "day",
+        "night",
+        "icon"
+      ]
+    }
+  ]
+}

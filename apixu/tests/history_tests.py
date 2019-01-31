@@ -1,8 +1,21 @@
 import unittest
+from schema import schema
+import os
 from apixu.client import ApixuClient, ApixuException
+from jsonschema import validate
+import datetime
 
 
 class HistoryTestCase(unittest.TestCase):
+
+    @staticmethod
+    def test_history():
+        api_key = os.environ['APIXUKEY']
+        client = ApixuClient(api_key)
+
+        now = datetime.datetime.now()
+        history = client.history(q='London', since=datetime.date(now.year, now.month, now.day))
+        validate(history, schema.read("history.json"))
 
     def test_history_invalid_api_key(self):
         client = ApixuClient('INVALID_KEY')
