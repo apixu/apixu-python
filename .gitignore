@@ -2,6 +2,7 @@
 .idea
 *.egg-info/
 build/
+dist/
 venv/
 *.egg
 .cache
