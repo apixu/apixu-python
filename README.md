@@ -74,3 +74,26 @@ See the [examples](./examples).
 ```
 APIXUKEY=yourapikey python examples/<file>.py 
 ```
+
+## Development
+
+You can use with Docker. See [Makefile](Makefile).
+
+Run tests:
+```
+make test PYVERSION=3 APIXUKEY=yourapikey
+```
+
+Enter environment:
+```
+make env PYVERSION=3 APIXUKEY=yourapikey
+python setup.py develop
+pip install -r requirements-dev.txt
+pylint apixu
+python -m unittest discover -s apixu/tests -p "*_tests.py"
+```
+
+Run example file:
+```
+make run PYVERSION=3 APIXUKEY=yourapikey FILE=examples/search.py
+```
