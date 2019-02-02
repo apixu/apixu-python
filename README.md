@@ -67,10 +67,37 @@ git checkout vX.X.X
 python setup.py install
 ```
 
-## Usage
+## Usage and integration with frameworks
 
 See the [examples](./examples).
 
 ```
 APIXUKEY=yourapikey python examples/<file>.py 
+```
+
+## Documentation
+
+https://www.apixu.com/doc/
+
+## Development
+
+You can use with Docker. See [Makefile](Makefile).
+
+Run tests:
+```
+make test PYVERSION=3 APIXUKEY=yourapikey
+```
+
+Enter environment:
+```
+make env PYVERSION=3 APIXUKEY=yourapikey
+python setup.py develop
+pip install -r requirements-dev.txt
+pytest apixu/tests/*.py
+pylint apixu
+```
+
+Run example file:
+```
+make run PYVERSION=3 APIXUKEY=yourapikey FILE=examples/search.py
 ```

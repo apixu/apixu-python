@@ -1,0 +1,2 @@
+python-dotenv==0.10.1
+https://github.com/apixu/apixu-python/archive/vX.X.X.zip

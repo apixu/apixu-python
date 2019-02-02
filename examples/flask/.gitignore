@@ -1,9 +1,8 @@
+.env
 .DS_Store
-.idea
 *.egg-info/
 build/
 dist/
-venv/
 *.egg
 .cache
 .pytest_cache/
