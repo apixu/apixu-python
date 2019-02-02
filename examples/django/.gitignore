@@ -1,0 +1,9 @@
+.env
+.DS_Store
+*.egg-info/
+build/
+dist/
+*.egg
+.cache
+.pytest_cache/
+db.sqlite3
