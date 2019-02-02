@@ -75,6 +75,10 @@ See the [examples](./examples).
 APIXUKEY=yourapikey python examples/<file>.py 
 ```
 
+## Documentation
+
+https://www.apixu.com/doc/
+
 ## Development
 
 You can use with Docker. See [Makefile](Makefile).
