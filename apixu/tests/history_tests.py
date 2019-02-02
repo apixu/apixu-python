@@ -2,6 +2,7 @@ import unittest
 from schema import schema
 import os
 from apixu.client import ApixuClient, ApixuException
+from apixu import errors
 from jsonschema import validate
 import datetime
 
@@ -22,14 +23,14 @@ class HistoryTestCase(unittest.TestCase):
         with self.assertRaises(ApixuException) as cm:
             client.history()
 
-        self.assertEqual(cm.exception.code, 2006)
+        self.assertEqual(cm.exception.code, errors.API_KEY_INVALID)
 
     def test_history_no_api_key(self):
         client = ApixuClient()
         with self.assertRaises(ApixuException) as cm:
             client.history()
 
-        self.assertEqual(cm.exception.code, 1002)
+        self.assertEqual(cm.exception.code, errors.API_KEY_NOT_PROVIDED)
 
     def test_history_invalid_since(self):
         client = ApixuClient()
