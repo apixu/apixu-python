@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from apixu.client import ApixuException
+from apixu import errors
 import logging
 
 
@@ -9,7 +10,7 @@ def handler(exc, context):
     code = status.HTTP_500_INTERNAL_SERVER_ERROR
 
     if isinstance(exc, ApixuException):
-        if exc.code == 1006:
+        if exc.code == errors.NO_LOCATION_FOUND_FOR_QUERY:
             message = 'Could not find location.'
             code = status.HTTP_404_NOT_FOUND
         logging.exception(exc)
