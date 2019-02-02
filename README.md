@@ -67,7 +67,7 @@ git checkout vX.X.X
 python setup.py install
 ```
 
-## Usage
+## Usage and integration with frameworks
 
 See the [examples](./examples).
 
