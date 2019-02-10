@@ -9,7 +9,7 @@ $(error APIXUKEY is not set)
 endif
 
 IMAGE=python:$(PYVERSION)-alpine
-TEST_CMD := 'python setup.py develop && pip install -r requirements-dev.txt && pytest apixu/tests/*.py'
+TEST_CMD := 'python setup.py install && pip install -r requirements-dev.txt && pytest'
 
 env:
 	docker run --rm -ti -v $(CURDIR):/src -w /src -e APIXUKEY=$(APIXUKEY) $(IMAGE) sh
