@@ -281,6 +281,12 @@
                         },
                         "vis_miles": {
                           "type": "number"
+                        },
+                        "gust_mph": {
+                          "type": "number"
+                        },
+                        "gust_kph": {
+                          "type": "number"
                         }
                       },
                       "required": [
@@ -313,7 +319,9 @@
                         "will_it_snow",
                         "chance_of_snow",
                         "vis_km",
-                        "vis_miles"
+                        "vis_miles",
+                        "gust_mph",
+                        "gust_kph"
                       ]
                     }
                   ]
