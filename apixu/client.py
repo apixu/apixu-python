@@ -59,17 +59,19 @@ class ApixuClient:
 
         return self._get(url, args)
 
-    def forecast(self, q=None, days=None):
+    def forecast(self, q=None, days=None, hour=None):
         url = self._url('forecast')
         args = {}
         if q:
             args['q'] = q
         if days:
             args['days'] = days
+        if hour:
+            args['hour'] = hour
 
         return self._get(url, args)
 
-    def history(self, q=None, since=None):
+    def history(self, q=None, since=None, until=None):
         url = self._url('history')
         args = {}
         if q:
@@ -78,5 +80,9 @@ class ApixuClient:
             if not isinstance(since, datetime.date):
                 raise ApixuException(message='"since" must be a date', code=0)
             args['dt'] = since.strftime('%Y-%m-%d')
+        if until:
+            if not isinstance(until, datetime.date):
+                raise ApixuException(message='"until" must be a date', code=0)
+            args['end_dt'] = until.strftime('%Y-%m-%d')
 
         return self._get(url, args)

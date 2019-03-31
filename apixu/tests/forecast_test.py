@@ -13,7 +13,7 @@ class ForecastTestCase(unittest.TestCase):
         api_key = os.environ['APIXUKEY']
         client = ApixuClient(api_key)
 
-        forecast = client.forecast('London', 1)
+        forecast = client.forecast('London', 1, 12)
         validate(forecast, schema.read("forecast.json"))
 
     def test_forecast_invalid_api_key(self):

@@ -268,6 +268,125 @@
                     "moonrise",
                     "moonset"
                   ]
+                },
+                "hour": {
+                  "type": "array",
+                  "items" : [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "time_epoch": {
+                          "type": "integer"
+                        },
+                        "time": {
+                          "type": "string"
+                        },
+                        "temp_c": {
+                          "type": "number"
+                        },
+                        "temp_f": {
+                          "type": "number"
+                        },
+                        "is_day": {
+                          "type": "integer"
+                        },
+                        "condition": {
+                          "type": "object",
+                          "properties": {
+                            "text": {
+                              "type": "string"
+                            },
+                            "icon": {
+                              "type": "string"
+                            },
+                            "code": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "text",
+                            "icon",
+                            "code"
+                          ]
+                        },
+                        "wind_mph": {
+                          "type": "number"
+                        },
+                        "wind_kph": {
+                          "type": "number"
+                        },
+                        "wind_degree": {
+                          "type": "integer"
+                        },
+                        "wind_dir": {
+                          "type": "string"
+                        },
+                        "pressure_mb": {
+                          "type": "number"
+                        },
+                        "pressure_in": {
+                          "type": "number"
+                        },
+                        "precip_mm": {
+                          "type": "number"
+                        },
+                        "precip_in": {
+                          "type": "number"
+                        },
+                        "humidity": {
+                          "type": "integer"
+                        },
+                        "cloud": {
+                          "type": "integer"
+                        },
+                        "feelslike_c": {
+                          "type": "number"
+                        },
+                        "feelslike_f": {
+                          "type": "number"
+                        },
+                        "vis_km": {
+                          "type": "number"
+                        },
+                        "vis_miles": {
+                          "type": "number"
+                        },
+                        "uv": {
+                          "type": "number"
+                        },
+                        "gust_mph": {
+                          "type": "number"
+                        },
+                        "gust_kph": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "time_epoch",
+                        "time",
+                        "temp_c",
+                        "temp_f",
+                        "is_day",
+                        "condition",
+                        "wind_mph",
+                        "wind_kph",
+                        "wind_degree",
+                        "wind_dir",
+                        "pressure_mb",
+                        "pressure_in",
+                        "precip_mm",
+                        "precip_in",
+                        "humidity",
+                        "cloud",
+                        "feelslike_c",
+                        "feelslike_f",
+                        "vis_km",
+                        "vis_miles",
+                        "gust_mph",
+                        "gust_kph"
+                      ]
+                    }
+                  ]
                 }
               },
               "required": [

@@ -15,7 +15,11 @@ class HistoryTestCase(unittest.TestCase):
         client = ApixuClient(api_key)
 
         now = datetime.datetime.now()
-        history = client.history(q='London', since=datetime.date(now.year, now.month, now.day))
+        history = client.history(
+            q='London',
+            since=datetime.date(now.year, now.month, now.day),
+            until=datetime.date(now.year, now.month, now.day),
+        )
         validate(history, schema.read("history.json"))
 
     def test_history_invalid_api_key(self):
@@ -36,6 +40,13 @@ class HistoryTestCase(unittest.TestCase):
         client = ApixuClient()
         with self.assertRaises(ApixuException) as cm:
             client.history(since='notdate')
+
+        self.assertEqual(cm.exception.code, 0)
+
+    def test_history_invalid_until(self):
+        client = ApixuClient()
+        with self.assertRaises(ApixuException) as cm:
+            client.history(until='notdate')
 
         self.assertEqual(cm.exception.code, 0)
 
