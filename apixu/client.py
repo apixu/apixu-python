@@ -43,11 +43,13 @@ class ApixuClient:
 
         return self._get(url)
 
-    def current(self, q=None):
+    def current(self, q=None, lang=None):
         url = self._url('current')
         args = {}
         if q:
             args['q'] = q
+        if lang:
+            args['lang'] = lang
 
         return self._get(url, args)
 
