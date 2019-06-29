@@ -3,7 +3,7 @@ import os
 from apixu.client import ApixuClient
 
 api_key = os.environ['APIXUKEY']
-client = ApixuClient(api_key)
+client = ApixuClient(api_key=api_key, lang="fr")
 
 current = client.current(q='London')
 
@@ -11,6 +11,7 @@ print(current['location']['name'])
 print(current['location']['region'])
 
 print(current['current']['last_updated_epoch'])
+print(current['current']['condition']['text'])
 
 '''
 {  

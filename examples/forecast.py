@@ -3,13 +3,14 @@ import os
 from apixu.client import ApixuClient
 
 api_key = os.environ['APIXUKEY']
-client = ApixuClient(api_key)
+client = ApixuClient(api_key=api_key, lang="es")
 
 forecast = client.forecast(q='London', days=2)
 
 print(forecast['location']['name'])
 
 print(forecast['current']['last_updated_epoch'])
+print(forecast['current']['condition']['text'])
 
 for day in forecast['forecast']['forecastday']:
     print(day['date'])
