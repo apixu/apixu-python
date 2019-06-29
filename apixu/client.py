@@ -17,9 +17,10 @@ class ApixuException(Exception):
 
 
 class ApixuClient:
-    def __init__(self, api_key=None, api_url=API_URL):
+    def __init__(self, api_key=None, api_url=API_URL, lang=None):
         self.api_key = api_key
         self.api_url = api_url.rstrip('/')
+        self.lang = lang
 
     def _get(self, url, args=None):
         new_args = {}
@@ -48,6 +49,8 @@ class ApixuClient:
         args = {}
         if q:
             args['q'] = q
+        if self.lang:
+            args['lang'] = self.lang
 
         return self._get(url, args)
 
@@ -68,6 +71,8 @@ class ApixuClient:
             args['days'] = days
         if hour:
             args['hour'] = hour
+        if self.lang:
+            args['lang'] = self.lang
 
         return self._get(url, args)
 
@@ -84,5 +89,7 @@ class ApixuClient:
             if not isinstance(until, datetime.date):
                 raise ApixuException(message='"until" must be a date', code=0)
             args['end_dt'] = until.strftime('%Y-%m-%d')
+        if self.lang:
+            args['lang'] = self.lang
 
         return self._get(url, args)

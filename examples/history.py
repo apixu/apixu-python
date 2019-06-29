@@ -14,6 +14,7 @@ print(history['location']['name'])
 for day in history['forecast']['forecastday']:
     print(day['date'])
     print(day['day']['maxtemp_c'])
+    print(day['day']['condition']['text'])
 
 '''
 {  
